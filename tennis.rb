@@ -44,6 +44,7 @@ module Tennis
       return 'forty' if @points == 3
       return 'duece' if @points == 4 && opponent.points == 4
       return 'game' if @points == 4 && opponent.points <= 2
+      return 'advantage' if @points == 5 && opponent.points == 4
     end
   end
 end
