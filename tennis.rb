@@ -18,6 +18,7 @@ module Tennis
     def wins_ball(winner)
       # TODO: Think it's gross to pass an integer instead of a player object?
       # Then reimplement this method!
+      player.points += 1
     end
   end
 
