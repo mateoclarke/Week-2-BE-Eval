@@ -116,6 +116,14 @@ describe Tennis::Player do
         expect(player.score).to eq('game')
       end
     end 
-    
+
+    context 'when both players have 5 points' do
+      it 'returns duece' do
+        player.points = 5
+        player.opponent.points = 5
+
+        expect(player.score).to eq('duece')
+      end
+    end
   end
 end
