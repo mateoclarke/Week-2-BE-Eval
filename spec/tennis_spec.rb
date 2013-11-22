@@ -107,5 +107,15 @@ describe Tennis::Player do
         expect(player.score).to eq('advantage')
       end
     end   
+
+    context 'when one player has 6 points and opponent has 4 or less points' do
+      it 'returns game' do
+        player.points = 6
+        player.opponent.points <=4
+
+        expect(player.score).to eq('game')
+      end
+    end 
+    
   end
 end
