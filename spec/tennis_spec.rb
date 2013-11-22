@@ -81,7 +81,7 @@ describe Tennis::Player do
       end
     end
 
-    context 'when both players have 4' do
+    context 'when both players have 4 points' do
       it 'returns duece' do
         player.points = 4
         player.opponent.points = 4
@@ -89,5 +89,14 @@ describe Tennis::Player do
         expect(player.score).to eq('duece')
       end
     end
+
+    context 'when one player has 4 points and opponent has 2 or less points' do
+      it 'returns game' do
+        player.points = 4
+        player.opponent.points <=2
+
+        expect(player.score).to eq('game')
+      end
+    end 
   end
 end
