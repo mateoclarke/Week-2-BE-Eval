@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'rspec'
-require 'pry-plus'
+require 'pry'
 require_relative '../tennis'
 
 describe Tennis::Game do
@@ -32,6 +32,7 @@ describe Tennis::Player do
   let(:player) do
     player = Tennis::Player.new
     player.opponent = Tennis::Player.new
+    player.opponent.opponent = player
 
     return player
   end
@@ -81,19 +82,20 @@ describe Tennis::Player do
       end
     end
 
-    context 'when both players have 4 points' do
+    context 'when both players have 3 points' do
       it 'returns duece' do
-        player.points = 4
-        player.opponent.points = 4
+        player.points = 3
+        player.opponent.points = 3
 
         expect(player.score).to eq('duece')
+        expect(player.opponent.score).to eq('duece')
       end
     end
 
-    context 'when one player has 4 points and opponent has 2 or less points' do
+    context 'when one player has 4 points and opponent has 2 points' do
       it 'returns game' do
         player.points = 4
-        player.opponent.points <=2
+        player.opponent.points =2
 
         expect(player.score).to eq('game')
       end
@@ -108,22 +110,31 @@ describe Tennis::Player do
       end
     end   
 
-    context 'when one player has 6 points and opponent has 4 or less points' do
+    context 'when one player has 6 points and opponent has 4 points' do
       it 'returns game' do
         player.points = 6
-        player.opponent.points <=4
+        player.opponent.points = 4
 
         expect(player.score).to eq('game')
       end
     end 
 
-    context 'when both players have 5 points' do
+    context 'when both players have 7 points' do
       it 'returns duece' do
-        player.points = 5
-        player.opponent.points = 5
+        player.points = 7
+        player.opponent.points = 7
 
         expect(player.score).to eq('duece')
       end
     end
+
+    context 'when one player has 10 points and opponent has 8 points' do
+      it 'returns game' do
+        player.points = 10
+        player.opponent.points = 8
+
+        expect(player.score).to eq('game')
+      end
+    end 
   end
 end
