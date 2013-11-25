@@ -2,6 +2,8 @@ module Tennis
   class Game
     attr_accessor :player1, :player2
 
+    # Creates two players in a Tennis game and assign them 
+    # as oppenents of each other.
     def initialize
       @player1 = Player.new
       @player2 = Player.new
